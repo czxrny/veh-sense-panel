@@ -5,6 +5,7 @@ import Vehicles from "./pages/Vehicles";
 import Drivers from "./pages/Drivers";
 import Reports from "./pages/Reports";
 import PrivateRoute from "./components/PrivateRoute";
+import AddDriver from "./pages/AddDriver";
 
 function App() {
   return (
@@ -33,6 +34,14 @@ function App() {
           element={
             <PrivateRoute>
               <Drivers />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/drivers/add"
+          element={
+            <PrivateRoute>
+              <AddDriver />
             </PrivateRoute>
           }
         />
