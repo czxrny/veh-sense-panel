@@ -1,13 +1,16 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
+import Vehicles from "./pages/Vehicles";
+import Drivers from "./pages/Drivers";
+import Reports from "./pages/Reports";
 import PrivateRoute from "./components/PrivateRoute";
 
-export default function App() {
+function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
 
         <Route
           path="/dashboard"
@@ -17,7 +20,34 @@ export default function App() {
             </PrivateRoute>
           }
         />
+        <Route
+          path="/vehicles"
+          element={
+            <PrivateRoute>
+              <Vehicles />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/drivers"
+          element={
+            <PrivateRoute>
+              <Drivers />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/reports"
+          element={
+            <PrivateRoute>
+              <Reports />
+            </PrivateRoute>
+          }
+        />
+        <Route path="*" element={<Login />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
+
+export default App;
