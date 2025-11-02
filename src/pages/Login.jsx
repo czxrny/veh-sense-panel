@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -21,9 +22,13 @@ export default function LoginPage() {
       );
 
       const data = await response.json();
-      console.log(data)
 
       if (response.ok && data.token) {
+        const decoded = jwtDecode(data.token);
+        if (decoded.rol != "admin") {
+            alert("User is not an admin");
+            return
+        }
         localStorage.setItem("token", data.token);
         navigate("/dashboard");
       } else {
