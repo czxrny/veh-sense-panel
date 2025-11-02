@@ -6,6 +6,8 @@ import Drivers from "./pages/Drivers";
 import Reports from "./pages/Reports";
 import PrivateRoute from "./components/PrivateRoute";
 import AddDriver from "./pages/AddDriver";
+import EditVehicle from "./pages/EditVehicle";
+import AddVehicle from "./pages/AddVehicle";
 
 function App() {
   return (
@@ -26,6 +28,22 @@ function App() {
           element={
             <PrivateRoute>
               <Vehicles />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/vehicles/add"
+          element={
+            <PrivateRoute>
+              <AddVehicle />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/vehicles/edit/:id"
+          element={
+            <PrivateRoute>
+              <EditVehicle />
             </PrivateRoute>
           }
         />
