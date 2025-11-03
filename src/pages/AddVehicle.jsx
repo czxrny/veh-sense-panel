@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { addVehicle } from "../api/Vehicle";
+import { getAllDrivers } from "../api/Driver";
 
 const AddVehicle = () => {
     const navigate = useNavigate();
@@ -12,6 +13,20 @@ const AddVehicle = () => {
     const [engine_power, setEnginePower] = useState(0);
     const [plates, setPlates] = useState("");
     const [expected_fuel, setExpectedFuel] = useState(0);
+    const [drivers, setDrivers] = useState([]);
+    const [ownerId, setOwnerId] = useState("");
+
+    useEffect(() => {
+    async function loadDrivers() {
+        try {
+        const data = await getAllDrivers();
+        setDrivers(data);
+        } catch (err) {
+        console.error(err);
+        }
+    }
+    loadDrivers();
+    }, []);
 
     const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,6 +39,7 @@ const AddVehicle = () => {
         engine_power,
         plates,
         expected_fuel,
+        owner_id: ownerId === "shared" ? null : Number(ownerId),
     };
 
     try {
@@ -35,7 +51,6 @@ const AddVehicle = () => {
         alert("Failed to add vehicle");
     }
     };
-
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
@@ -119,6 +134,25 @@ const AddVehicle = () => {
                             className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
                         />
                     </div>
+
+                    <div>
+                        <label className="block text-gray-700 mb-1">Owner</label>
+                        <select
+                            value={ownerId}
+                            onChange={(e) => setOwnerId(e.target.value)}
+                            required
+                            className="w-full border border-gray-300 rounded-md px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-green-500"
+                        >
+                            <option value="">Select owner...</option>
+                            <option value="shared">Shared</option>
+                            {drivers.map((driver) => (
+                            <option key={driver.id} value={driver.id}>
+                                {driver.user_name || `${driver.first_name} ${driver.last_name}`}
+                            </option>
+                            ))}
+                        </select>
+                    </div>
+
 
                     <div className="flex justify-between mt-6">
                         <button
