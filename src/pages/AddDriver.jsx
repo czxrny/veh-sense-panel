@@ -8,35 +8,23 @@ const AddDriver = () => {
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  const payload = {
-    user_name,
-    email,
-    password,
+    const payload = {
+      user_name,
+      email,
+      password,
+    };
+
+    try {
+      await addDriver(payload);
+      alert("Driver added successfully!");
+      navigate("/drivers");
+    } catch (err) {
+      console.error(err);
+      alert("Failed to add driver");
+    }
   };
-
-  try {
-    const token = localStorage.getItem("token");
-    const res = await fetch("/api/admin/users", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(payload),
-    });
-
-    if (!res.ok) throw new Error("Failed to add driver");
-
-    alert("Driver added successfully!");
-    navigate("/drivers");
-  } catch (err) {
-    console.error(err);
-    alert("Failed to add driver");
-  }
-};
-
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">

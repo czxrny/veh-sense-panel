@@ -1,51 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getAllDrivers, deleteDriver } from "../api/Driver";
 
 const Drivers = () => {
     const [drivers, setDrivers] = useState([]);
     const navigate = useNavigate();
 
-    const fetchDrivers = async () => {
-        try {
-            const token = localStorage.getItem("token");
-            const res = await fetch("/api/admin/users", {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-
-            if (!res.ok) throw new Error("Failed to fetch drivers");
-
-            const data = await res.json();
-            setDrivers(data);
-        } catch (err) {
-            console.error(err);
-        }
-    };
-
     useEffect(() => {
-        fetchDrivers();
+        async function loadDrivers() {
+            try {
+            const data = await getAllDrivers();
+            setDrivers(data);
+            } catch (err) {
+            console.error(err);
+            }
+        }
+        loadDrivers();
     }, []);
 
     const handleDelete = async (id) => {
-    if (!window.confirm("Are you sure you want to delete this driver?")) return;
+        if (!window.confirm("Are you sure you want to delete this driver?")) return;
 
-    try {
-        const token = localStorage.getItem("token");
-        const res = await fetch(`/api/user/${id}`, {
-        method: "DELETE",
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
-        });
-
-        if (!res.ok) throw new Error("Failed to delete driver");
-
-        fetchDrivers();
-    } catch (err) {
-        console.error(err);
-        alert("Failed to delete driver");
-    }
+        try {
+            await deleteDriver(id);
+            const data = await getAllDrivers();
+            setDrivers(data);
+        } catch (err) {
+            console.error(err);
+            alert("Failed to delete driver");
+        }
     };
 
     return (

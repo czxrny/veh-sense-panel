@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { getVehicleById, editVehicle  } from "../api/Vehicle";
 
 const EditVehicle = () => {
     const { id } = useParams();
@@ -10,25 +11,17 @@ const EditVehicle = () => {
     const [expected_fuel, setExpectedFuel] = useState(0);
 
     useEffect(() => {
-        const fetchVehicle = async () => {
+        async function loadVehicle() {
             try {
-                const token = localStorage.getItem("token");
-                const res = await fetch(`/api/vehicles/${id}`, {
-                    headers: { Authorization: `Bearer ${token}` },
-                });
-                if (!res.ok) throw new Error("Failed to fetch vehicle");
-                const data = await res.json();
-
+                const data = await getVehicleById(id);
                 setEnginePower(data.engine_power);
-                setPlates(data.plates ?? "");
+                setPlates(data.plates);
                 setExpectedFuel(data.expected_fuel);
             } catch (err) {
                 console.error(err);
-                alert("Failed to load vehicle data");
             }
-        };
-
-        fetchVehicle();
+        }
+        loadVehicle();
     }, [id]);
 
     const handleSubmit = async (e) => {
@@ -41,17 +34,7 @@ const EditVehicle = () => {
         };
 
         try {
-            const token = localStorage.getItem("token");
-            const res = await fetch(`/api/vehicles/${id}`, {
-                method: "PATCH",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
-                },
-                body: JSON.stringify(payload),
-            });
-            if (!res.ok) throw new Error("Failed to update vehicle");
-
+            await editVehicle(id, payload);
             alert("Vehicle updated successfully!");
             navigate("/vehicles");
         } catch (err) {

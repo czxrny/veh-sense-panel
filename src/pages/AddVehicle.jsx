@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { addVehicle } from "../api/Vehicle";
 
 const AddVehicle = () => {
     const navigate = useNavigate();
@@ -13,38 +14,28 @@ const AddVehicle = () => {
     const [expected_fuel, setExpectedFuel] = useState(0);
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+    e.preventDefault();
 
-        const payload = {
-            brand,
-            model,
-            year,
-            engine_capacity,
-            engine_power,
-            plates,
-            expected_fuel,
-        };
-
-        try {
-            const token = localStorage.getItem("token");
-            const res = await fetch("/api/vehicles", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
-                },
-                body: JSON.stringify(payload),
-            });
-
-            if (!res.ok) throw new Error("Failed to add vehicle");
-
-            alert("Vehicle added successfully!");
-            navigate("/vehicles");
-        } catch (err) {
-            console.error(err);
-            alert("Failed to add vehicle");
-        }
+    const payload = {
+        brand,
+        model,
+        year,
+        engine_capacity,
+        engine_power,
+        plates,
+        expected_fuel,
     };
+
+    try {
+        await addVehicle(payload);
+        alert("Vehicle added successfully!");
+        navigate("/vehicles");
+    } catch (err) {
+        console.error(err);
+        alert("Failed to add vehicle");
+    }
+    };
+
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">

@@ -1,48 +1,30 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { jwtDecode } from "jwt-decode";
+import { login } from "../api/Auth";
+import { isAdmin } from "../utils/Jwt";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const login = async (email, password) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
     try {
-      const response = await fetch(
-        `/api/auth/login`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `ApiKey ${import.meta.env.VITE_API_KEY}`,
-          },
-          body: JSON.stringify({ email, password }),
-        }
-      );
+      const data = await login({ email, password });
+      console.log("Login data:", data);
 
-      const data = await response.json();
-
-      if (response.ok && data.token) {
-        const decoded = jwtDecode(data.token);
-        if (decoded.rol != "admin") {
-            alert("User is not an admin");
-            return
-        }
+      if (data && isAdmin(data.token)) {
         localStorage.setItem("token", data.token);
         navigate("/dashboard");
       } else {
-        alert(data.message || "Login error");
+        throw new Error("User is not admin or login failed");
       }
-    } catch (error) {
-      console.error("Login error:", error);
-      alert("Could not login");
+    } catch (err) {
+      console.error(err);
+      alert("Could not login: " + err.message);
     }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    login(email, password);
   };
 
   return (

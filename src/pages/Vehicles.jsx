@@ -1,55 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getAllVehicles, deleteVehicle } from "../api/Vehicle";
 
 const Vehicles = () => {
     const [vehicles, setVehicles] = useState([]);
     const navigate = useNavigate();
 
-    const fetchVehicles = async () => {
-        try {
-            const token = localStorage.getItem("token");
-            const res = await fetch("/api/vehicles", {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-
-            if (!res.ok) {
-                const text = await res.text();
-                console.error("Fetch error:", text);
-                throw new Error("Failed to fetch vehicles");
-            }
-
-            const data = await res.json();
-
-            setVehicles(data);
-        } catch (err) {
-            console.error(err);
-        }
-    };
-
     useEffect(() => {
-        fetchVehicles();
+        async function loadVehicles() {
+            try {
+                const data = await getAllVehicles();
+                setVehicles(data);
+            } catch (err) {
+                console.error(err);
+            }
+        }
+    loadVehicles();
     }, []);
 
-    const handleDelete = async (id) => {
+    async function handleDelete(id) {
         if (!window.confirm("Are you sure you want to delete this vehicle?")) return;
 
         try {
-            const token = localStorage.getItem("token");
-            const res = await fetch(`/api/vehicles/${id}`, {
-                method: "DELETE",
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            if (!res.ok) throw new Error("Failed to delete vehicle");
-            fetchVehicles();
+            await deleteVehicle(id);
+            const data = await getAllVehicles();
+            setVehicles(data);
         } catch (err) {
             console.error(err);
             alert("Failed to delete vehicle");
         }
-    };
+    }
+
 
     return (
         <div className="p-8 bg-gray-100 min-h-screen">
