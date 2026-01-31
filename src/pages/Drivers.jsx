@@ -51,7 +51,6 @@ const Drivers = () => {
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total KM</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rides</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rating</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
             </tr>
             </thead>
@@ -62,7 +61,6 @@ const Drivers = () => {
                 <td className="px-6 py-4 whitespace-nowrap">{driver.user_name}</td>
                 <td className="px-6 py-4 whitespace-nowrap">{driver.total_kilometers}</td>
                 <td className="px-6 py-4 whitespace-nowrap">{driver.number_of_rides}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{driver.rating}</td>
                 <td className="px-6 py-4 whitespace-nowrap">
                     <button
                     onClick={() => handleDelete(driver.id)}
