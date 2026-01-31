@@ -32,49 +32,51 @@ const Drivers = () => {
     };
 
     return (
-    <div className="p-8 bg-gray-100 min-h-screen">
-        <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold text-gray-800">Drivers Management</h1>
+<div className="p-8 min-h-screen" style={{ backgroundColor: "#262622", fontFamily: "Courier New, monospace", color: "#ffffff" }}>
+    <div className="flex items-center justify-between mb-6">
+        <h1 className="text-2xl font-bold" style={{ color: "#aaaba3" }}>Drivers Management</h1>
         <button
             onClick={() => navigate("/drivers/add")}
-            className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition"
+            className="px-4 py-2 rounded-md transition"
+            style={{ backgroundColor: "#6c734f", color: "#ffffff", fontWeight: "bold" }}
         >
             Add Driver
         </button>
-        </div>
+    </div>
 
-        <div className="overflow-x-auto bg-white shadow-md rounded-lg">
-        <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
-            <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total KM</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rides</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-            </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-200">
-            {drivers.map((driver) => (
-                <tr key={driver.id} className="hover:bg-gray-50">
-                <td className="px-6 py-4 whitespace-nowrap">{driver.id}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{driver.user_name}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{driver.total_kilometers}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{driver.number_of_rides}</td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                    <button
-                    onClick={() => handleDelete(driver.id)}
-                    className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 transition"
-                    >
-                    Delete
-                    </button>
-                </td>
+    <div className="overflow-x-auto shadow-lg rounded-2xl border" style={{ borderColor: "#3a3d2b" }}>
+        <table className="min-w-full divide-y divide-gray-700 table-auto" style={{ borderCollapse: "separate", borderSpacing: "24px 8px" }}>
+            <thead style={{ backgroundColor: "#262622" }}>
+                <tr>
+                    <th className="px-4 py-3 text-left text-xs font-bold tracking-wider w-12" style={{ color: "#c7cfa7" }}>ID</th>
+                    <th className="px-4 py-3 text-left text-xs font-bold tracking-wider w-48" style={{ color: "#c7cfa7" }}>Name</th>
+                    <th className="px-4 py-3 text-left text-xs font-bold tracking-wider w-32" style={{ color: "#c7cfa7" }}>Total KM</th>
+                    <th className="px-4 py-3 text-left text-xs font-bold tracking-wider w-28" style={{ color: "#c7cfa7" }}>Rides</th>
+                    <th className="px-4 py-3 text-left text-xs font-bold tracking-wider w-32" style={{ color: "#c7cfa7" }}>Actions</th>
                 </tr>
-            ))}
+            </thead>
+            <tbody className="divide-y divide-gray-700">
+                {drivers.map(driver => (
+                    <tr key={driver.id} className="hover:opacity-80 transition" style={{ borderRadius: "8px" }}>
+                        <td className="px-4 py-4 whitespace-nowrap w-12">{driver.id}</td>
+                        <td className="px-4 py-4 whitespace-nowrap w-48">{driver.user_name}</td>
+                        <td className="px-4 py-4 whitespace-nowrap w-32">{driver.total_kilometers}</td>
+                        <td className="px-4 py-4 whitespace-nowrap w-28">{driver.number_of_rides}</td>
+                        <td className="px-4 py-4 whitespace-nowrap space-x-3 w-32">
+                            <button
+                                onClick={() => handleDelete(driver.id)}
+                                className="px-4 py-2 rounded-md transition"
+                                style={{ backgroundColor: "#929c6b", color: "#ffffff", fontWeight: "bold" }}
+                            >
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                ))}
             </tbody>
         </table>
-        </div>
     </div>
+</div>
     );
 };
 

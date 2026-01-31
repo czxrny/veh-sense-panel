@@ -44,63 +44,64 @@ const EditVehicle = () => {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
-            <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-md">
-                <h1 className="text-2xl font-bold mb-6 text-gray-800 text-center">
-                    Edit Vehicle
-                </h1>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                    <div>
-                        <label className="block text-gray-700 mb-1">Engine Power</label>
-                        <input
-                            type="number"
-                            value={engine_power}
-                            onChange={(e) => setEnginePower(Number(e.target.value))}
-                            required
-                            className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
-                        />
-                    </div>
+    <div className="flex flex-col items-center justify-center min-h-screen p-6 font-mono" style={{fontFamily: "Courier New, monospace" }}>
+        <div className="shadow-lg rounded-2xl p-8 w-full max-w-md">
+            <h1 className="text-2xl font-bold mb-6 text-[#c7cfa7] text-center">
+                Edit Vehicle
+            </h1>
+            <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                    <label className="block font-bold mb-1 text-[#929c6b]">Engine Power</label>
+                    <input
+                        type="number"
+                        value={engine_power}
+                        onChange={(e) => setEnginePower(Number(e.target.value))}
+                        required
+                        className="w-full rounded-md px-3 py-2 border border-[#3a3d2b] bg-[#464940] text-white focus:outline-none focus:ring-2 focus:ring-[#6c734f]"
+                    />
+                </div>
 
-                    <div>
-                        <label className="block text-gray-700 mb-1">Plates</label>
-                        <input
-                            type="text"
-                            value={plates}
-                            onChange={(e) => setPlates(e.target.value)}
-                            className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
-                        />
-                    </div>
+                <div>
+                    <label className="block font-bold mb-1 text-[#929c6b]">Plates</label>
+                    <input
+                        type="text"
+                        value={plates}
+                        onChange={(e) => setPlates(e.target.value)}
+                        className="w-full rounded-md px-3 py-2 border border-[#3a3d2b] bg-[#464940] text-white focus:outline-none focus:ring-2 focus:ring-[#6c734f]"
+                    />
+                </div>
 
-                    <div>
-                        <label className="block text-gray-700 mb-1">Expected Fuel</label>
-                        <input
-                            type="number"
-                            value={expected_fuel}
-                            onChange={(e) => setExpectedFuel(Number(e.target.value))}
-                            required
-                            className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
-                        />
-                    </div>
+                <div>
+                    <label className="block font-bold mb-1 text-[#929c6b]">Expected Fuel</label>
+                    <input
+                        type="number"
+                        value={expected_fuel}
+                        onChange={(e) => setExpectedFuel(Number(e.target.value))}
+                        required
+                        className="w-full rounded-md px-3 py-2 border border-[#3a3d2b] bg-[#464940] text-white focus:outline-none focus:ring-2 focus:ring-[#6c734f]"
+                    />
+                </div>
 
-                    <div className="flex justify-between mt-6">
-                        <button
-                            type="button"
-                            onClick={() => navigate("/vehicles")}
-                            className="px-4 py-2 rounded-md bg-gray-300 hover:bg-gray-400 transition"
-                        >
-                            Cancel
-                        </button>
-                        <button
-                            type="submit"
-                            className="px-4 py-2 rounded-md bg-green-500 text-white hover:bg-green-600 transition"
-                        >
-                            Save
-                        </button>
-                    </div>
-                </form>
-            </div>
+                <div className="flex justify-between mt-6">
+                    <button
+                        type="button"
+                        onClick={() => navigate("/vehicles")}
+                        className="px-4 py-2 rounded-md bg-[#3a3d2b] hover:bg-[#6c734f] transition font-bold"
+                    >
+                        Cancel
+                    </button>
+                    <button
+                        type="submit"
+                        className="px-4 py-2 rounded-md bg-[#6c734f] text-white hover:bg-[#929c6b] transition font-bold"
+                    >
+                        Save
+                    </button>
+                </div>
+            </form>
         </div>
-    );
+    </div>
+);
+
 };
 
 export default EditVehicle;

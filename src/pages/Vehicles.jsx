@@ -32,54 +32,57 @@ const Vehicles = () => {
     }
 
 
-    return (
-        <div className="p-8 bg-gray-100 min-h-screen">
+  return (
+        <div className="p-8 min-h-screen" style={{ backgroundColor: "#262622", fontFamily: "Courier New, monospace", color: "#ffffff" }}>
             <div className="flex items-center justify-between mb-6">
-                <h1 className="text-2xl font-bold text-gray-800">Vehicles Management</h1>
+                <h1 className="text-2xl font-bold" style={{ color: "#aaaba3" }}>Vehicles Management</h1>
                 <button
                     onClick={() => navigate("/vehicles/add")}
-                    className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition"
+                    className="px-4 py-2 rounded-md transition"
+                    style={{ backgroundColor: "#6c734f", color: "#ffffff", fontWeight: "bold" }}
                 >
                     Add Vehicle
                 </button>
             </div>
 
-            <div className="overflow-x-auto bg-white shadow-md rounded-lg">
-                <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-50">
+            <div className="overflow-x-auto shadow-lg rounded-2xl border" style={{ borderColor: "#3a3d2b" }}>
+                <table className="min-w-full divide-y divide-gray-700 table-auto" style={{ borderCollapse: "separate", borderSpacing: "24px 8px" }}>
+                    <thead style={{ backgroundColor: "#262622" }}>
                         <tr>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Brand</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Model</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Year</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Engine Capacity</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Engine Power</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Plates</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Expected Fuel</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                            <th className="px-4 py-3 text-left text-xs font-bold tracking-wider w-12" style={{ color: "#c7cfa7" }}>ID</th>
+                            <th className="px-4 py-3 text-left text-xs font-bold tracking-wider w-32" style={{ color: "#c7cfa7" }}>Brand</th>
+                            <th className="px-4 py-3 text-left text-xs font-bold tracking-wider w-32" style={{ color: "#c7cfa7" }}>Model</th>
+                            <th className="px-4 py-3 text-left text-xs font-bold tracking-wider w-20" style={{ color: "#c7cfa7" }}>Year</th>
+                            <th className="px-4 py-3 text-left text-xs font-bold tracking-wider w-32" style={{ color: "#c7cfa7" }}>Engine Capacity</th>
+                            <th className="px-4 py-3 text-left text-xs font-bold tracking-wider w-28" style={{ color: "#c7cfa7" }}>Engine Power</th>
+                            <th className="px-4 py-3 text-left text-xs font-bold tracking-wider w-24" style={{ color: "#c7cfa7" }}>Plates</th>
+                            <th className="px-4 py-3 text-left text-xs font-bold tracking-wider w-28" style={{ color: "#c7cfa7" }}>Expected Fuel</th>
+                            <th className="px-4 py-3 text-left text-xs font-bold tracking-wider w-40" style={{ color: "#c7cfa7" }}>Actions</th>
                         </tr>
                     </thead>
-                    <tbody className="divide-y divide-gray-200">
+                    <tbody className="divide-y divide-gray-700">
                         {vehicles.map(vehicle => (
-                            <tr key={vehicle.key} className="hover:bg-gray-50">
-                                <td className="px-6 py-4 whitespace-nowrap">{vehicle.ID ?? vehicle.id}</td>
-                                <td className="px-6 py-4 whitespace-nowrap">{vehicle.brand}</td>
-                                <td className="px-6 py-4 whitespace-nowrap">{vehicle.model}</td>
-                                <td className="px-6 py-4 whitespace-nowrap">{vehicle.year}</td>
-                                <td className="px-6 py-4 whitespace-nowrap">{vehicle.engine_capacity}</td>
-                                <td className="px-6 py-4 whitespace-nowrap">{vehicle.engine_power}</td>
-                                <td className="px-6 py-4 whitespace-nowrap">{vehicle.plates ?? "-"}</td>
-                                <td className="px-6 py-4 whitespace-nowrap">{vehicle.expected_fuel}</td>
-                                <td className="px-6 py-4 whitespace-nowrap space-x-2">
+                            <tr key={vehicle.key} className="hover:opacity-80 transition" style={{ borderRadius: "8px" }}>
+                                <td className="px-4 py-4 whitespace-nowrap w-12">{vehicle.ID ?? vehicle.id}</td>
+                                <td className="px-4 py-4 whitespace-nowrap w-32">{vehicle.brand}</td>
+                                <td className="px-4 py-4 whitespace-nowrap w-32">{vehicle.model}</td>
+                                <td className="px-4 py-4 whitespace-nowrap w-20">{vehicle.year}</td>
+                                <td className="px-4 py-4 whitespace-nowrap w-32">{vehicle.engine_capacity}cc</td>
+                                <td className="px-4 py-4 whitespace-nowrap w-28">{vehicle.engine_power}HP</td>
+                                <td className="px-4 py-4 whitespace-nowrap w-24">{vehicle.plates ?? "-"}</td>
+                                <td className="px-4 py-4 whitespace-nowrap w-28">{vehicle.expected_fuel}L</td>
+                                <td className="px-4 py-4 whitespace-nowrap space-x-3 w-40">
                                     <button
                                         onClick={() => navigate(`/vehicles/edit/${vehicle.ID ?? vehicle.id}`)}
-                                        className="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-600 transition"
+                                        className="px-4 py-2 rounded-md transition"
+                                        style={{ backgroundColor: "#6c734f", color: "#ffffff", fontWeight: "bold" }}
                                     >
                                         Edit
                                     </button>
                                     <button
                                         onClick={() => handleDelete(vehicle.ID ?? vehicle.id)}
-                                        className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 transition"
+                                        className="px-4 py-2 rounded-md transition"
+                                        style={{ backgroundColor: "#929c6b", color: "#ffffff", fontWeight: "bold" }}
                                     >
                                         Delete
                                     </button>

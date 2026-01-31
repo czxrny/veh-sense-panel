@@ -27,46 +27,49 @@ const AddDriver = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
-      <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-md">
-        <h1 className="text-2xl font-bold mb-6 text-gray-800 text-center">
+    <div
+      className="flex flex-col items-center justify-center min-h-screen bg-[#262622] p-6 font-mono"
+      style={{ backgroundColor: "#252622", fontFamily: "Courier New, monospace" }}
+    >
+      <div className="shadow-lg rounded-2xl p-8 w-full max-w-md">
+        <h1 className="text-2xl font-bold mb-6 text-[#c7cfa7] text-center">
           Add New Driver
         </h1>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-gray-700 mb-1">Name</label>
+            <label className="block font-bold mb-1 text-[#929c6b]">Name</label>
             <input
               type="text"
               name="user_name"
               value={user_name}
               onChange={(e) => setUserName(e.target.value)}
               required
-              className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="w-full rounded-md px-3 py-2 border border-[#3a3d2b] bg-[#464940] text-white focus:outline-none focus:ring-2 focus:ring-[#6c734f]"
             />
           </div>
 
           <div>
-            <label className="block text-gray-700 mb-1">Email</label>
+            <label className="block font-bold mb-1 text-[#929c6b]">Email</label>
             <input
               type="email"
               name="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="w-full rounded-md px-3 py-2 border border-[#3a3d2b] bg-[#464940] text-white focus:outline-none focus:ring-2 focus:ring-[#6c734f]"
             />
           </div>
 
           <div>
-            <label className="block text-gray-700 mb-1">Password</label>
+            <label className="block font-bold mb-1 text-[#929c6b]">Password</label>
             <input
               type="password"
               name="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="w-full rounded-md px-3 py-2 border border-[#3a3d2b] bg-[#464940] text-white focus:outline-none focus:ring-2 focus:ring-[#6c734f]"
             />
           </div>
 
@@ -74,13 +77,13 @@ const AddDriver = () => {
             <button
               type="button"
               onClick={() => navigate("/drivers")}
-              className="px-4 py-2 rounded-md bg-gray-300 hover:bg-gray-400 transition"
+              className="px-4 py-2 rounded-md bg-[#3a3d2b] hover:bg-[#6c734f] transition font-bold"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-4 py-2 rounded-md bg-green-500 text-white hover:bg-green-600 transition"
+              className="px-4 py-2 rounded-md bg-[#6c734f] text-white hover:bg-[#929c6b] transition font-bold"
             >
               Add Driver
             </button>

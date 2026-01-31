@@ -1,11 +1,11 @@
 import { apiFetch } from "./Core";
 
-export async function getDriverById() {
+export async function getDriverById(id) {
     const options = {
         method: "GET",
         auth: "token",
     }
-    return apiFetch("/user/${id}", options)
+    return apiFetch(`/users/${id}`, options)
 }
 
 export async function getAllDrivers() {

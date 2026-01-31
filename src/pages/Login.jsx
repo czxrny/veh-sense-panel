@@ -28,36 +28,63 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100">
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white shadow-lg rounded-xl p-8 w-80"
-      >
-        <h2 className="text-2xl font-bold text-center mb-6">Vehsense Admin Panel</h2>
+<div
+  className="flex items-center justify-center min-h-screen w-full"
+  style={{ backgroundColor: "#262622", fontFamily: "Courier New, monospace" }}
+>
+  <form
+    onSubmit={handleSubmit}
+    className="shadow-lg rounded-xl p-8 w-80"
+    style={{ backgroundColor: "#21211e", color: "#ffffff" }}
+  >
+    <h2
+      className="text-2xl font-bold text-center mb-6"
+      style={{ color: "#dcdcdc" }}
+    >
+      Vehsense Admin Panel
+    </h2>
 
-        <input
-          type="email"
-          placeholder="Email"
-          className="w-full border border-gray-300 rounded-md p-2 mb-4"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+    <input
+      type="email"
+      placeholder="Email"
+      className="w-full rounded-md p-2 mb-4"
+      style={{
+        backgroundColor: "#262622",
+        border: "1px solid #3a3d2b",
+        color: "#ffffff",
+        fontFamily: "Courier New, monospace",
+      }}
+      value={email}
+      onChange={(e) => setEmail(e.target.value)}
+    />
 
-        <input
-          type="password"
-          placeholder="Hasło"
-          className="w-full border border-gray-300 rounded-md p-2 mb-6"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+    <input
+      type="password"
+      placeholder="Password"
+      className="w-full rounded-md p-2 mb-6"
+      style={{
+        backgroundColor: "#262622",
+        border: "1px solid #3a3d2b",
+        color: "#ffffff",
+        fontFamily: "Courier New, monospace",
+      }}
+      value={password}
+      onChange={(e) => setPassword(e.target.value)}
+    />
 
-        <button
-          type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition"
-        >
-            Login
-        </button>
-      </form>
-    </div>
+    <button
+      type="submit"
+      className="w-full py-2 rounded-md transition"
+      style={{
+        backgroundColor: "#6c734f",
+        color: "#ffffff",
+        fontWeight: "bold",
+      }}
+    >
+      Login
+    </button>
+  </form>
+</div>
+
   );
 }

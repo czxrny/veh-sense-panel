@@ -35,7 +35,7 @@ const ObdCharts = ({ rawData }) => {
     <div className="space-y-8">
       {/* RPM */}
       <div>
-        <h3 className="text-lg font-semibold mb-2">RPM</h3>
+        <h3 className="text-lg font-semibold mb-2">RPM Chart</h3>
         <ResponsiveContainer width="100%" height={200}>
           <LineChart data={frames}>
             <CartesianGrid strokeDasharray="3 3" />
@@ -62,7 +62,7 @@ const ObdCharts = ({ rawData }) => {
 
       {/* Engine Load */}
       <div>
-        <h3 className="text-lg font-semibold mb-2">Engine Load</h3>
+        <h3 className="text-lg font-semibold mb-2">Engine Load Chart (%)</h3>
         <ResponsiveContainer width="100%" height={200}>
           <LineChart data={frames}>
             <CartesianGrid strokeDasharray="3 3" />
@@ -89,7 +89,7 @@ const ObdCharts = ({ rawData }) => {
 
       {/* Speed */}
       <div>
-        <h3 className="text-lg font-semibold mb-2">Speed</h3>
+        <h3 className="text-lg font-semibold mb-2">Vehicle Speed Chart (%)</h3>
         <ResponsiveContainer width="100%" height={200}>
           <LineChart data={frames}>
             <CartesianGrid strokeDasharray="3 3" />
