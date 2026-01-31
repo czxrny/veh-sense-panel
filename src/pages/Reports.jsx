@@ -10,7 +10,6 @@ const Reports = () => {
         async function fetchReports() {
             try {
                 const data = await getReports();
-                console.log(data)
                 setReports(data)
             } catch (err) {
                 console.error(err)
@@ -52,22 +51,23 @@ const Reports = () => {
                     </thead>
                     <tbody className="divide-y divide-gray-200">
                         {reports.map((report, i) => {
-                            const dateObj = new Date(report.start_time * 1000);
+                            const startDate = new Date(report.start_time);
+                            const stopDate = new Date(report.stop_time);
 
-                            const date = dateObj.toLocaleDateString("en-US");
-                            const time = dateObj.toLocaleTimeString("en-US");
+                            const dateStr = startDate.toLocaleDateString("en-US");
+                            const startTimeStr = startDate.toLocaleTimeString("pl-PL");
+
                             const durationMs = report.stop_time - report.start_time;
-
                             const hours = Math.floor(durationMs / 3600000);
                             const minutes = Math.floor((durationMs % 3600000) / 60000);
+                            const formattedDuration = `${hours}h ${minutes}m`; 
 
-                            const formattedDuration = `${hours}h ${minutes}m`;
                             return (
                                 <tr key={report.key} className="hover:bg-gray-50">
                                     <td className="px-6 py-4 whitespace-nowrap">{i+1}</td>
                                     <td className="px-6 py-4 whitespace-nowrap">{report.user_name}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap">{date}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap">{time}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap">{dateStr}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap">{startTimeStr}</td>
                                     <td className="px-6 py-4 whitespace-nowrap">{formattedDuration}</td>
                                     <td className="px-6 py-4 whitespace-nowrap">{report.acceleration_style}</td>
                                     <td className="px-6 py-4 whitespace-nowrap">{report.braking_style}</td>

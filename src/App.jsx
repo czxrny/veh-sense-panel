@@ -8,6 +8,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import AddDriver from "./pages/AddDriver";
 import EditVehicle from "./pages/EditVehicle";
 import AddVehicle from "./pages/AddVehicle";
+import ReportDetails from "./pages/ReportDetails";
 
 function App() {
   return (
@@ -68,6 +69,14 @@ function App() {
           element={
             <PrivateRoute>
               <Reports />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/report/:id/details"
+          element={
+            <PrivateRoute>
+              <ReportDetails />
             </PrivateRoute>
           }
         />
