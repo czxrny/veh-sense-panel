@@ -28,8 +28,8 @@ const AddDriver = () => {
 
   return (
     <div
-      className="flex flex-col items-center justify-center min-h-screen bg-[#262622] p-6 font-mono"
-      style={{ backgroundColor: "#252622", fontFamily: "Courier New, monospace" }}
+      className="flex flex-col items-center justify-center min-h-screen p-6 font-mono"
+      style={{ fontFamily: "Courier New, monospace" }}
     >
       <div className="shadow-lg rounded-2xl p-8 w-full max-w-md">
         <h1 className="text-2xl font-bold mb-6 text-[#c7cfa7] text-center">

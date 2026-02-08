@@ -30,7 +30,7 @@ export default function LoginPage() {
   return (
 <div
   className="flex items-center justify-center min-h-screen w-full"
-  style={{ backgroundColor: "#262622", fontFamily: "Courier New, monospace" }}
+  style={{fontFamily: "Courier New, monospace" }}
 >
   <form
     onSubmit={handleSubmit}

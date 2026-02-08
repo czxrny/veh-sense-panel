@@ -39,10 +39,14 @@ const ObdCharts = ({ rawData }) => {
         <ResponsiveContainer width="100%" height={200}>
           <LineChart data={frames}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="timestamp" tickFormatter={(t) => new Date(t).toLocaleTimeString()} />
-            <YAxis domain={[0, 8000]} />
+            <XAxis
+              dataKey="timestamp"
+              tickFormatter={(t) => new Date(t).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+              tick={{ fontSize: 6, fill: "#c7cfa7", fontFamily: "Courier New, monospace" }}
+            />            <YAxis domain={[0, 8000]} />
             <Tooltip labelFormatter={(t) => new Date(t).toLocaleTimeString()} />
             <Line type="monotone" dataKey="rpm" stroke="#8d5700" dot={false} />
+            
 
             {events
               .filter(e => e.type === "high_rpm")
@@ -66,8 +70,11 @@ const ObdCharts = ({ rawData }) => {
         <ResponsiveContainer width="100%" height={200}>
           <LineChart data={frames}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="timestamp" tickFormatter={(t) => new Date(t).toLocaleTimeString()} />
-            <YAxis domain={[0, 100]} />
+            <XAxis
+              dataKey="timestamp"
+              tickFormatter={(t) => new Date(t).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+              tick={{ fontSize: 6, fill: "#c7cfa7", fontFamily: "Courier New, monospace" }}
+            />            <YAxis domain={[0, 100]} />
             <Tooltip labelFormatter={(t) => new Date(t).toLocaleTimeString()} />
             <Line type="monotone" dataKey="engine_load" stroke="#33b62c" dot={false} />
 
@@ -93,7 +100,14 @@ const ObdCharts = ({ rawData }) => {
         <ResponsiveContainer width="100%" height={200}>
           <LineChart data={frames}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="timestamp" tickFormatter={(t) => new Date(t).toLocaleTimeString()} />
+            <XAxis
+              dataKey="timestamp"
+              tickFormatter={(t) => new Date(t).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+              tick={{ fontSize: 6, fill: "#c7cfa7", fontFamily: "Courier New, monospace" }}
+            />
+            <Tooltip 
+              labelFormatter={(t) => new Date(t).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} 
+            />
             <YAxis domain={[0, 150]} />
             <Tooltip labelFormatter={(t) => new Date(t).toLocaleTimeString()} />
             <Line type="monotone" dataKey="vehicle_speed" stroke="#1dacff" dot={false} />

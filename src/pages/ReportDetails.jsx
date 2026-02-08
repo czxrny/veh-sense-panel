@@ -39,7 +39,7 @@ return (
       <div className="text-center p-10 text-[#929c6b]">Loading data...</div>
     ) : (
       <div
-        className="flex flex-col items-center justify-center min-h-screen bg-[#262622] p-6 font-mono"
+        className="flex flex-col items-center justify-center min-h-screen p-6 font-mono"
         style={{ fontFamily: "Courier New, monospace" }}
       >
         <h1 className="text-2xl font-bold mb-6 text-[#c7cfa7] text-center">
@@ -51,7 +51,7 @@ return (
           <section className="flex-1 rounded-2xl p-6  shadow-md">
             <h2 className="text-xl font-bold mb-3 text-[#c7cfa7]">Driver Info</h2>
             <p><strong>Name:</strong> {user.user_name}</p>
-            <p><strong>Total number of kilometers:</strong> {user.total_killometers} km</p>
+            <p><strong>Total number of kilometers:</strong> {user.total_kilometers} km</p>
             <p><strong>Number of rides:</strong> {user.number_of_rides}</p>
           </section>
 
@@ -104,8 +104,6 @@ return (
           <ObdCharts rawData={rideData} />
         </div>
         </div>
-
-        {/* Charts */}
       </div>
     )}
   </>
