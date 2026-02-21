@@ -19,7 +19,7 @@ export async function getAllDrivers() {
 export async function addDriver(body) {
     const options = {
         method: "POST",
-        auth: "apikey",
+        auth: "token",
         body: JSON.stringify(body)
     }
     return apiFetch("/admin/users", options)
