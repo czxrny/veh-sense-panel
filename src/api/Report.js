@@ -5,7 +5,7 @@ export async function getReports() {
         method: "GET",
         auth: "token",
     }
-    return apiFetch("admin/reports", options)
+    return apiFetch("/admin/reports", options)
 }
 
 export async function getReportById(id) {
